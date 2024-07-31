@@ -4,8 +4,8 @@ Python Version: Python 3.10.12
 ## Installation:
 1. Clone the repository:
 
-git clone https://github.com/your-repo/user-management-api.git
-cd user-management-api
+-- git clone https://github.com/nafiahossain/Flask_API.git
+-- cd Flask_API
 
 2. Set up the virtual environment:
 
