@@ -87,8 +87,18 @@ This Flask API project includes user registration, login, and profile management
       "password": "password123",
       "first_name": "John",
       "last_name": "Doe",
-      "email": "john.doe@example.com",
-      "role": "User"
+      "email": "user@eemail.com"
+    }
+    ```
+    For Admin:
+   ```json
+    {
+      "username": "admin123",
+      "password": "password123",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "admin@email.com",
+      "role": "Admin"
     }
     ```
 
@@ -110,11 +120,26 @@ This Flask API project includes user registration, login, and profile management
     }
     ```
 
+### Token
+
+For any user management task, 
+- Headers:
+    - Authorization: Bearer <token>
+    
 - **Responses**:
     - `200 OK`: Login successful with JWT token.
     - `401 Unauthorized`: Incorrect username or password.
 
-### Get User Details
+### Get All Users (Admin Only)
+
+- **Endpoint**: `/users`
+- **Method**: `GET`
+- **Description**: Retrieve a list of all users.
+- **Responses**:
+    - `200 OK`: User details retrieved successfully.
+    - `403 Forbidden`: Unauthorized access.
+
+### Get User Details (Admin Only)
 
 - **Endpoint**: `/user/<int:user_id>`
 - **Method**: `GET`
@@ -126,7 +151,7 @@ This Flask API project includes user registration, login, and profile management
     - `403 Forbidden`: Unauthorized access.
     - `404 Not Found`: User not found.
 
-### Update User Details
+### Update User Details (Admin Only)
 
 - **Endpoint**: `/user/<int:user_id>`
 - **Method**: `PUT`
@@ -137,22 +162,20 @@ This Flask API project includes user registration, login, and profile management
 
     ```json
     {
-      "username": "user123",
+      "username": "john_doe_updated",
       "first_name": "John",
       "last_name": "Doe",
-      "email": "john.doe@example.com",
-      "role": "User",
-      "password": "newpassword123",
-      "active": true
+      "email": "john_updated@example.com"
     }
     ```
 
 - **Responses**:
     - `200 OK`: User details updated successfully.
-    - `403 Forbidden`: Unauthorized access.
+    - `403 Forbidden`: 1. Unauthorized access, 2. Admins cannot update other admins' details, 3. 
+                        Password, Email, or ID update not allowed.
     - `404 Not Found`: User not found.
 
-### Delete User
+### Delete User (Admin Only)
 
 - **Endpoint**: `/user/<int:user_id>`
 - **Method**: `DELETE`
@@ -160,10 +183,51 @@ This Flask API project includes user registration, login, and profile management
 - **Parameters**:
     - `user_id` (path): The ID of the user.
 - **Responses**:
-    - `200 OK`: User deleted successfully.
-    - `403 Forbidden`: Unauthorized access.
+    - `200 OK`: Account deleted successfully.
+    - `403 Forbidden`: 1. Unauthorized access, 2. Admins cannot delete other admins' accounts.
     - `404 Not Found`: User not found.
 
+### Update Own Details (For Users (regular/admin))
+
+- **Endpoint**: `/user`
+- **Method**: `GET`
+- **Description**: Retrieve details of the logged-in user.
+    
+ - **Responses**:
+    - `200 OK`: Retrieved Information.
+    - `404 Not Found`: User not found.
+      
+### Update Own Details (For Users (regular/admin))
+
+- **Endpoint**: `/user`
+- **Method**: `PUT`
+- **Description**: Update details of the logged-in user.
+- **Request Body**:
+
+    ```json
+    {
+      "username": "username_updated",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "email_updated@example.com"
+    }
+    ```
+    
+ - **Responses**:
+    - `200 OK`: User/Admin details updated successfully.
+    - `403 Forbidden`: Password, Role, or ID update not allowed
+    - `404 Not Found`: User not found.
+
+### Delete Own Account
+
+- **Endpoint**: `/user`
+- **Method**: `DELETE`
+- **Description**: Delete the logged-in user's account.
+    
+ - **Responses**:
+    - `200 OK`: Account deleted successfully.
+    - `404 Not Found`: User not found.
+      
 ### Request Password Reset
 
 - **Endpoint**: `/request-password-reset`
@@ -173,7 +237,7 @@ This Flask API project includes user registration, login, and profile management
 
     ```json
     {
-      "email": "john.doe@example.com"
+      "email": "admin@email.com"
     }
     ```
 
@@ -202,7 +266,7 @@ This Flask API project includes user registration, login, and profile management
 
 ## Testing
 
-To test the API, you can use tools like [Postman](https://www.postman.com/) or [Swagger UI](http://localhost:5000/apidocs) (if integrated). Ensure that you include the `Authorization` header with the `Bearer` token for endpoints that require authentication.
+To test the API, you can use tools like [Postman](https://www.postman.com/) or [Swagger UI](http://localhost:5000/apidocs) (if integrated). Ensure that you include the `Authorization` header with the `Bearer` token for endpoints that require authentication. As for Swagger UI, enter the token in the authorize field this way: Bearer <token>.
 
 ## Contributing
 
