@@ -1,46 +1,14 @@
-
-Python Version: Python 3.10.12
-
-## Installation:
-1. Clone the repository:
-
-  - git clone https://github.com/nafiahossain/Flask_API.git
-  -  cd Flask_API
-
-2. Set up the virtual environment:
-
-- python3 -m venv venv
-
-- source venv/bin/activate
-
-- pip install Flask Flask-SQLAlchemy psycopg2-binary Flask-JWT-Extended pyyaml 
-
-- pip install Flask Flask-SQLAlchemy Flask-JWT-Extended Werkzeug Flasgger Flask-Migrate psycopg2-binary
-
-
-3. Setup
-
-- flask db init
-- flask db migrate
-- flask db upgrade
-
-4. Run
-
-- python app.py
-
-
-
 # Flask API with JWT Authentication
 
 ## Overview
 
-This project is a Flask API that includes user registration, login, and profile management functionalities. It uses JWT (JSON Web Token) for authentication and supports role-based access control. The API is designed to be easily extendable and secure.
+This Flask API project includes user registration, login, and profile management functionalities. It uses JWT (JSON Web Token) for authentication and supports role-based (User/Admin) access control. The API is designed to be easily extendable and secure.
 
 ## Features
 
-- **User Registration**: Allows users to register with username, password, email, first name, last name, and role.
+- **User Registration**: Allows users to register with username, password, email, first name, last name, and role. If the "role" is not defined while registering, the user will be registered as a regular user by default. And if "role"="Admin", the user will be registered as an Admin.
 - **User Login**: Authenticates users and returns a JWT token.
-- **User Management**: Allows users to view their details and admins to manage user accounts.
+- **User Management**: Allows users to view, delete, and update their details and admins to manage (view any/all users, and modify/delete) their user accounts.
 - **Password Reset**: Supports password reset functionality via email.
 
 ## Installation
@@ -48,7 +16,9 @@ This project is a Flask API that includes user registration, login, and profile 
 ### Prerequisites
 
 - Python 3.7 or later
+- Flask
 - PostgreSQL
+- SQLAlchemy
 - Virtualenv (optional but recommended)
 
 ### Setup
@@ -56,8 +26,8 @@ This project is a Flask API that includes user registration, login, and profile 
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/yourusername/your-repo.git
-    cd your-repo
+    git clone https://github.com/nafiahossain/Flask_API.git
+    cd Flask-API
     ```
 
 2. **Create and activate a virtual environment** (optional but recommended):
@@ -72,8 +42,14 @@ This project is a Flask API that includes user registration, login, and profile 
     ```bash
     pip install -r requirements.txt
     ```
-
-4. **Set up environment variables**:
+    
+    or,
+   
+    ```bash
+    pip install Flask Flask-SQLAlchemy Flask-JWT-Extended Werkzeug Flasgger Flask-Migrate psycopg2-binary
+    ```
+   
+5. **Set up environment variables**:
 
     Create a `.env` file in the project root directory and add the following:
 
@@ -82,16 +58,18 @@ This project is a Flask API that includes user registration, login, and profile 
     JWT_SECRET_KEY=your-secret-key
     ```
 
-5. **Initialize the database**:
+6. **Initialize the database**:
 
     ```bash
+    flask db init
+    flask db migrate
     flask db upgrade
     ```
 
-6. **Run the application**:
+7. **Run the application**:
 
     ```bash
-    flask run
+    python app.py
     ```
 
 ## API Endpoints
