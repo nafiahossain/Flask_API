@@ -286,7 +286,7 @@ For any user management task,
 
 ## Testing
 
-To test the API, you can use tools like [Postman](https://www.postman.com/) or [Swagger UI](http://localhost:5000/apidocs) (if integrated). Ensure that you include the `Authorization` header with the `Bearer` token for endpoints that require authentication. As for Swagger UI, enter the token in the authorize field this way: Bearer [token].
+To test the API, you can use tools like Postman/Thunder (Extensions available on VScode) or go to this link to check the endpoints, [Swagger UI](http://localhost:5000/apidocs). Ensure that you include the `Authorization` header with the `Bearer` token for endpoints that require authentication. As for Swagger UI, enter the token in the authorize field this way: Bearer [token].
 
 ## Contributing
 
