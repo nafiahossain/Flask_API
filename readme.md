@@ -51,6 +51,26 @@ This Flask API project includes user registration, login, and profile management
    
 5. **Set up environment variables**:
 
+    Create a database:
+    Step 1: Open the PostgreSQL Command Line
+    First, access the PostgreSQL command line interface (CLI) or use a graphical user interface (GUI) tool like pgAdmin.
+
+    Step 2: Connect to PostgreSQL
+    If you're using the command line, connect to your PostgreSQL server. Replace username with your PostgreSQL username:
+   
+    ```sh
+    psql -U username
+    ```
+
+    Step 3: Create the Database
+    Once connected, use the following SQL command to create a database. Replace database_name with your desired database name:
+   
+    ```sql
+    CREATE DATABASE yourdatabase;
+    ```
+    
+    Then,
+   
     Create a `.env` file in the project root directory and add the following:
 
     ```env
@@ -58,7 +78,7 @@ This Flask API project includes user registration, login, and profile management
     JWT_SECRET_KEY=your-secret-key
     ```
 
-6. **Initialize the database**:
+7. **Initialize the database**:
 
     ```bash
     flask db init
@@ -66,7 +86,7 @@ This Flask API project includes user registration, login, and profile management
     flask db upgrade
     ```
 
-7. **Run the application**:
+8. **Run the application**:
 
     ```bash
     python app.py
