@@ -46,7 +46,7 @@ This Flask API project includes user registration, login, and profile management
     or,
    
     ```bash
-    pip install Flask Flask-SQLAlchemy Flask-JWT-Extended Werkzeug Flasgger Flask-Migrate psycopg2-binary
+    pip install Flask Flask-SQLAlchemy Flask-JWT-Extended Werkzeug Flasgger Flask-Migrate psycopg2-binary python-dotenv
     ```
    
 5. **Set up environment variables**:
@@ -124,7 +124,7 @@ This Flask API project includes user registration, login, and profile management
 
 For any user management task, 
 - Headers:
-    - Authorization: Bearer <token>
+    - Authorization: Bearer [token]
     
 - **Responses**:
     - `200 OK`: Login successful with JWT token.
